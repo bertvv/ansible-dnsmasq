@@ -8,12 +8,11 @@ port={{ dnsmasq_port }}
 {% endif %}
 {% if dnsmasq_domain_needed %}
 domain-needed
-
 {% endif %}
 {% if dnsmasq_bogus_priv %}
 bogus-priv
-
 {% endif %}
+
 {% if dnsmasq_resolv_file is defined %}
 resolv-file={{ dnsmasq_resolv_file }}
 
@@ -21,6 +20,9 @@ resolv-file={{ dnsmasq_resolv_file }}
 {% if dnsmasq_addn_hosts is defined %}
 addn-hosts={{ dnsmasq_addn_hosts }}
 
+{% endif %}
+{% if dnsmasq_domain is defined %}
+domain={{ dnsmasq_domain }}
 {% endif %}
 {% if dnsmasq_dhcp_ranges is defined %}
 {% for range in dnsmasq_dhcp_ranges %}
@@ -35,3 +37,7 @@ dhcp-host={{ host.mac }},{{ host.ip  }}{% if host.name is defined %},{{ host.nam
 {% endfor %}
 
 {% endif %}
+{% if dnsmasq_option_router is defined %}
+dhcp-option=option:router,{{ dnsmasq_option_router }}
+{% endif %}
+
