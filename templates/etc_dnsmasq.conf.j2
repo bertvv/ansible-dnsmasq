@@ -22,10 +22,15 @@ resolv-file={{ dnsmasq_resolv_file }}
 addn-hosts={{ dnsmasq_addn_hosts }}
 
 {% endif %}
-{% if dnsmasq_dhcp_range is defined %}
-{% for range in dnsmasq_dhcp_range %}
+{% if dnsmasq_dhcp_ranges is defined %}
+{% for range in dnsmasq_dhcp_ranges %}
 dhcp-range={{ range.start_addr }},{{ range.end_addr }},{{ range.lease_time }}
 {% endfor%}
 
 {% endif %}
+{% if dnsmasq_dhcp_hosts is defined %}
+{% for host in dnsmasq_dhcp_hosts %}
+dhcp-host={{ host.mac }},{{ host.ip  }}
+{% endfor %}
 
+{% endif %}
