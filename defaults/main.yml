@@ -1,3 +1,5 @@
 # roles/dnsmasq/defaults/main.yml
 ---
 dnsmasq_listen_address: 127.0.0.1
+dnsmasq_domain_needed: false
+dnsmasq_bogus_priv: false
