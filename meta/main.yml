@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Bert Van Vreckem
+  description: A role for managing a Dnsmasq server.
+  company: University College Ghent
+  license: Simplified BSD Licens (2-clause)
+  min_ansible_version: 1.2
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  - name: Fedora
+    versions:
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+  categories:
+    - networking
+dependencies: []
+
