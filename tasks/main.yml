@@ -1,0 +1,20 @@
+# roles/dnsmasq/tasks/main.yml
+---
+- name: Install Dnsmasq
+  yum: pkg=dnsmasq state=present
+  tags: dnsmasq
+
+- name: Make sure Dnsmasq is running
+  service: name=dnsmasq state=started enabled=yes
+  tags: dnsmasq
+
+- name: Apply firewall rules (both running configuration and permanent)
+  firewalld:
+    service={{ item[0] }}
+    permanent={{ item[1] }}
+    state=enabled
+    zone=public
+  with_nested:
+    - [ 'dns', 'dhcp' ]
+    - [ 'true', 'false' ]
+  tags: dnsmasq
