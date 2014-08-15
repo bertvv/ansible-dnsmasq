@@ -30,7 +30,8 @@ dhcp-range={{ range.start_addr }},{{ range.end_addr }},{{ range.lease_time }}
 {% endif %}
 {% if dnsmasq_dhcp_hosts is defined %}
 {% for host in dnsmasq_dhcp_hosts %}
-dhcp-host={{ host.mac }},{{ host.ip  }}
+dhcp-host={{ host.mac }},{{ host.ip  }}{% if host.name is defined %},{{ host.name }}{% endif %}
+
 {% endfor %}
 
 {% endif %}
