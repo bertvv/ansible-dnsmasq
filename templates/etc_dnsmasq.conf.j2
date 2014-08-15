@@ -14,3 +14,11 @@ domain-needed
 bogus-priv
 
 {% endif %}
+{% if dnsmasq_resolv_file is defined %}
+resolv-file={{ dnsmasq_resolv_file }}
+
+{% endif %}
+{% if dnsmasq_addn_hosts is defined %}
+addn-hosts={{ dnsmasq_addn_hosts }}
+
+{% endif %}
