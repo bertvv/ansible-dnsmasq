@@ -21,6 +21,9 @@ resolv-file={{ dnsmasq_resolv_file }}
 addn-hosts={{ dnsmasq_addn_hosts }}
 
 {% endif %}
+{% if dnsmasq_expand_hosts is defined %}
+expand-hosts
+{% endif %}
 {% if dnsmasq_domain is defined %}
 domain={{ dnsmasq_domain }}
 {% endif %}
