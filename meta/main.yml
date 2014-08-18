@@ -3,7 +3,7 @@ galaxy_info:
   author: Bert Van Vreckem
   description: A role for managing a Dnsmasq server.
   company: University College Ghent
-  license: Simplified BSD Licens (2-clause)
+  license: Simplified BSD License
   min_ansible_version: 1.2
   platforms:
   - name: EL
