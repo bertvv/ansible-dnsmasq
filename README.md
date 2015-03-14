@@ -79,6 +79,12 @@ You may want to change the base box into one that you like. The current one is b
 
 The playbook [`test.yml`](tests/test.yml) applies the role to a VM, setting role variables.
 
+## See also
+
+Galaxy user [L2G](https://galaxy.ansible.com/list#/users/11257) has written a similar [Dnsmasq role](https://galaxy.ansible.com/list#/roles/3030) with (at first sight) more features and supported platforms (Amazon and SmartOS).
+
+Debian/Ubuntu users can take a look at [Debops](https://galaxy.ansible.com/list#/users/6081)'s [Dnsmasq role](https://galaxy.ansible.com/list#/roles/1561).
+
 ## Contributing
 
 Issues, feature requests, ideas are appreciated and can be posted in the Issues section. Pull requests are also very welcome. Preferably, create a topic branch and when submitting, squash your commits into one (with a descriptive message).
