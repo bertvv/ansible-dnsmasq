@@ -1,6 +1,6 @@
 # Dnsmasq
 
-This role can be used to set up Dnsmasq.
+This role can be used to set up Dnsmasq. Specifically, this role can be used to set up a simple DNS forwarder, and a DHCP server.
 
 ## Requirements
 
