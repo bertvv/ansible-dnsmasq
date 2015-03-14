@@ -1,27 +1,32 @@
 # roles/dnsmasq/tasks/main.yml
 ---
 - name: Install Dnsmasq
-  yum: pkg=dnsmasq state=present
+  yum:
+    pkg: dnsmasq
+    state: present
   tags: dnsmasq
 
 - name: Set configuration file
   template:
-    src=etc_dnsmasq.conf.j2
-    dest=/etc/dnsmasq.conf
-    validate='dnsmasq --test --conf-file=%s'
+    src: etc_dnsmasq.conf.j2
+    dest: /etc/dnsmasq.conf
+    validate: 'dnsmasq --test --conf-file=%s'
   notify: restart dnsmasq
   tags: dnsmasq
 
 - name: Make sure Dnsmasq is running
-  service: name=dnsmasq state=started enabled=yes
+  service:
+    name: dnsmasq
+    state: started
+    enabled: yes
   tags: dnsmasq
 
 - name: Apply DNS firewall rules
   firewalld:
-    service=dns
-    permanent=true
-    state=enabled
-    zone=public
+    service: dns
+    permanent: true
+    state: enabled
+    zone: public
   with_items:
     - 'dns'
   notify:
@@ -30,10 +35,10 @@
 
 - name: Apply DHCP firewall rules
   firewalld:
-    service=dhcp
-    permanent=true
-    state=enabled
-    zone=public
+    service: dhcp
+    permanent: true
+    state: enabled
+    zone: public
   with_items:
     - 'dhcp'
   when: dhcpmasq_dhcp_ranges is defined
