@@ -16,13 +16,27 @@
   service: name=dnsmasq state=started enabled=yes
   tags: dnsmasq
 
-- name: Apply firewall rules (both running configuration and permanent)
+- name: Apply DNS firewall rules
   firewalld:
-    service={{ item[0] }}
-    permanent={{ item[1] }}
+    service=dns
+    permanent=true
     state=enabled
     zone=public
-  with_nested:
-    - [ 'dns', 'dhcp' ]
-    - [ 'true', 'false' ]
+  with_items:
+    - 'dns'
+  notify:
+    restart firewalld
+  tags: dnsmasq
+
+- name: Apply DHCP firewall rules
+  firewalld:
+    service=dhcp
+    permanent=true
+    state=enabled
+    zone=public
+  with_items:
+    - 'dhcp'
+  when: dhcpmasq_dhcp_ranges is defined
+  notify:
+    restart firewalld
   tags: dnsmasq
