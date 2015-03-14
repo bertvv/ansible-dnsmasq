@@ -39,30 +39,35 @@ Most Dnsmasq settings have sane defaults and don't have to be specified. The sim
 
 This enables a simple DNS forwarder with default settings.
 
-A more elaborate example, with DHCP. In this example variables set in `host_vars/server`, the playbook should only mention the role.
+A more elaborate example, with DHCP. In this example, variables are set in `host_vars/`, the playbook should only mention the role.
 
-    ---
-    dnsmasq_listen_address: '192.168.0.2'
-    dnsmasq_domain_needed: true
-    dnsmasq_expand_hosts: true
-    dnsmasq_bogus_priv: true
-    dnsmasq_domain: 'example.com'
+```Yaml
+---
+dnsmasq_listen_address: '192.168.0.2'
+dnsmasq_domain_needed: true
+dnsmasq_expand_hosts: true
+dnsmasq_bogus_priv: true
+dnsmasq_domain: 'example.com'
 
-    dnsmasq_dhcp_ranges:
-      - start_addr: '192.168.0.150'
-        end_addr: '192.168.0.250'
-        lease_time: '8h'
+dnsmasq_dhcp_ranges:
+  - start_addr: '192.168.0.150'
+    end_addr: '192.168.0.250'
+    lease_time: '8h'
 
-    dnsmasq_dhcp_hosts:
-      - name: 'alpha'
-        mac: '11:22:33:44:55:66'
-        ip: '192.168.0.10'
-      - name: 'bravo'
-        mac: 'aa:bb:cc:dd:ee:ff'
-        ip: '192.168.0.11'
+dnsmasq_dhcp_hosts:
+  - name: 'alpha'
+    mac: '11:22:33:44:55:66'
+    ip: '192.168.0.10'
+  - name: 'bravo'
+    mac: 'aa:bb:cc:dd:ee:ff'
+    ip: '192.168.0.11'
 
-    dnsmasq_option_router: '192.168.0.254'
+dnsmasq_option_router: '192.168.0.254'
+```
 
+## Contributing
+
+Issues, feature requests, ideas are appreciated and can be posted in the Issues section. Pull requests are also very welcome. Preferably, create a topic branch and when submitting, squash your commits into one (with a descriptive message).
 
 ## License
 
