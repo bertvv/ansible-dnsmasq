@@ -9,7 +9,7 @@ This role can be used on Linux systems with:
 * the `yum` package manager,
 * `firewalld`, which is used to configure the firewall.
 
-That means a fairly recent Fedora, or RedHat/CentOS 7.
+That means a fairly recent Fedora (up to F21), or RedHat/CentOS 7.
 
 ## Role Variables
 
@@ -27,7 +27,7 @@ That means a fairly recent Fedora, or RedHat/CentOS 7.
 
 ## Dependencies
 
-None
+None, but role [bertvv.hosts](https://galaxy.ansible.com/list#/roles/4617) may come in handy if you want an easy way to manage the contents of `/etc/hosts`.
 
 ## Example Playbook
 
