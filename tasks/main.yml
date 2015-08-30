@@ -41,7 +41,7 @@
     zone: public
   with_items:
     - 'dhcp'
-  when: dhcpmasq_dhcp_ranges is defined
+  when: dnsmasq_dhcp_ranges is defined
   notify:
     restart firewalld
   tags: dnsmasq
