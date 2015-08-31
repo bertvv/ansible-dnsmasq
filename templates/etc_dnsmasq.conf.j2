@@ -21,7 +21,7 @@ resolv-file={{ dnsmasq_resolv_file }}
 addn-hosts={{ dnsmasq_addn_hosts }}
 
 {% endif %}
-{% if dnsmasq_expand_hosts is defined %}
+{% if dnsmasq_expand_hosts %}
 expand-hosts
 {% endif %}
 {% if dnsmasq_domain is defined %}
@@ -44,4 +44,7 @@ dhcp-host={{ host.mac }},{{ host.ip  }}{% if host.name is defined %},{{ host.nam
 dhcp-option=option:router,{{ dnsmasq_option_router }}
 {% endif %}
 
+{% if dnsmasq_authoritative %}
+dhcp-authoritative
+{% endif %}
 conf-dir=/etc/dnsmasq.d
