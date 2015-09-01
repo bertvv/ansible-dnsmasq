@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Bert Van Vreckem
-  description: A role for managing a Dnsmasq server.
+  description: A role for managing a Dnsmasq server on CentOS/RHEL 7 or Fedora 16-21.
   company: University College Ghent
   license: Simplified BSD License
   min_ansible_version: 1.2
@@ -16,7 +16,8 @@ galaxy_info:
     - 18
     - 19
     - 20
+    - 21
   categories:
     - networking
 dependencies: []
-version: 1.0.1
+version: 1.1.0
