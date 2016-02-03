@@ -29,6 +29,7 @@ None of the variables below are required, but you need to at least set `dnsmasq_
 | `dnsmasq_option_router`  | -         | set this to specify the default gateway to be sent to clients.                                                                                                                         |
 | `dnsmasq_port`           | -         | set this to listen on a custom port.                                                                                                                                                   |
 | `dnsmasq_resolv_file`    | -         | set this to specify a custom `resolv.conf` file.                                                                                                                                       |
+| `dnsmasq_server`         | -         | set this to specify the IP address of upstream DNS servers directly.                                                                                                                   |
 
 ## Dependencies
 
