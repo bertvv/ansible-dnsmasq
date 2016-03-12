@@ -4,6 +4,17 @@ This file contains al notable changes to the `bertvv.dnsmasq` Ansible role.
 
 This file adheres to the guidelines of [http://keepachangelog.com/](http://keepachangelog.com/). Versioning follows [Semantic Versioning](http://semver.org/).
 
+## 1.2.0 - 2016-03-12
+
+### Added
+
+- Role variable `dnsmasq_interface` (credits to [David Wittman](https://github.com/DavidWittman))
+- Role variable `dnsmasq_server` (credits to [David Wittman](https://github.com/DavidWittman))
+
+### Removed
+
+- Setting firewall rules. This should not be a concern of this role. Use another role that manages the firewall specific to your distribution (e.g. [bertvv.el7](https://galaxy.ansible.com/bertvv/el7/)).
+
 ## 1.1.0 - 2015-08-31
 
 ### Added
