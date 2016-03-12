@@ -2,6 +2,9 @@
 # {{ ansible_managed }}
 
 listen-address={{ dnsmasq_listen_address }}
+{% if dnsmasq_interface is defined %}
+interface={{ dnsmasq_interface }}
+{% endif %}
 {% if dnsmasq_port is defined %}
 port={{ dnsmasq_port }}
 
