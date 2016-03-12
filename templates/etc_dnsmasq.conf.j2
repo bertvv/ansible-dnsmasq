@@ -44,6 +44,10 @@ dhcp-host={{ host.mac }},{{ host.ip  }}{% if host.name is defined %},{{ host.nam
 dhcp-option=option:router,{{ dnsmasq_option_router }}
 {% endif %}
 
+{% if dnsmasq_server is defined %}
+server={{ dnsmasq_server }}
+{% endif %}
+
 {% if dnsmasq_authoritative %}
 dhcp-authoritative
 {% endif %}
