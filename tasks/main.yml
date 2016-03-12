@@ -20,28 +20,3 @@
     state: started
     enabled: yes
   tags: dnsmasq
-
-- name: Apply DNS firewall rules
-  firewalld:
-    service: dns
-    permanent: true
-    state: enabled
-    zone: public
-  with_items:
-    - 'dns'
-  notify:
-    restart firewalld
-  tags: dnsmasq
-
-- name: Apply DHCP firewall rules
-  firewalld:
-    service: dhcp
-    permanent: true
-    state: enabled
-    zone: public
-  with_items:
-    - 'dhcp'
-  when: dnsmasq_dhcp_ranges is defined
-  notify:
-    restart firewalld
-  tags: dnsmasq
