@@ -57,7 +57,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   - >
-    ${role}/tests/runbats.sh
+    "${role}/tests/runbats.sh" || ls -R "${role}"
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'

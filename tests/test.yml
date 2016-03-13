@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  sudo: true
+  become: true
   vars:
     dnsmasq_listen_address: '192.168.6.66'
     dnsmasq_domain_needed: true
