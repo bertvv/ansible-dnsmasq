@@ -29,7 +29,7 @@ services:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install dnsutils
+  - sudo apt-get --yes install dnsutils
   # Pull container
   - sudo docker pull bertvv/ansible-testing:${distribution}_${version}
 
