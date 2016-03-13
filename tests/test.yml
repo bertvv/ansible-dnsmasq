@@ -23,5 +23,16 @@
 
     dnsmasq_option_router: '192.168.6.254'
 
+  pre_tasks:
+    - name: Add entry to /etc/hosts
+      lineinfile:
+        dest: /etc/hosts
+        line: "{{ item }}"
+      with_items:
+        - "192.168.6.10  alpha"
+        - "192.168.6.11  bravo"
+        - "192.168.6.66  ns dhcp"
+
   roles:
-    - dnsmasq
+    - role_under_test
+

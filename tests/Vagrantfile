@@ -1,7 +1,5 @@
 # vi: set ft=ruby
 
-require 'rbconfig'
-
 ROLE_NAME = 'dnsmasq'
 HOST_NAME = 'test' + ROLE_NAME
 VAGRANTFILE_API_VERSION = '2'
