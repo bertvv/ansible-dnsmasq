@@ -4,6 +4,16 @@ This file contains al notable changes to the `bertvv.dnsmasq` Ansible role.
 
 This file adheres to the guidelines of [http://keepachangelog.com/](http://keepachangelog.com/). Versioning follows [Semantic Versioning](http://semver.org/).
 
+## 1.2.1 - 2016-03-18
+
+### Added
+
+- Functional tests (with [BATS](https://github.com/sstephenson/bats))
+
+### Removed
+
+- The `version:` field in `meta/main.yml` was removed because it is no longer accepted in Ansible 2.0. Unfortunately, this change breaks compatibility with `librarian-ansible`. For more info on this issue, see [ansible/ansible#](https://github.com/ansible/ansible/issues/13496).
+
 ## 1.2.0 - 2016-03-12
 
 ### Added

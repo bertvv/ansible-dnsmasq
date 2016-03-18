@@ -1,7 +1,5 @@
 # Dnsmasq
 
-[![Build Status](https://travis-ci.org/bertvv/ansible-dnsmasq.svg?branch=master)](https://travis-ci.org/bertvv/ansible-dnsmasq)
-
 An Ansible role for setting up Dnsmasq under CentOS/RHEL 7 as a simple DNS forwarder, and/or DHCP server. Specifically, the responsibilities of this role are to install the necessary packages and manage the configuration.
 
 Configuring the firewall is outside the scope of this role. Use another role suitable for your distribution, e.g. [bertvv.el7](https://galaxy.ansible.com/bertvv/el7/).
@@ -56,15 +54,29 @@ A more elaborate example, with DHCP can be found in the [test playbook](tests/te
 
 The `tests` directory contains tests for this role in the form of a Vagrant environment. The playbook [`test.yml`](tests/test.yml) applies the role to a VM, setting up a DNS forwarder and DHCP server.
 
-The directory `tests/roles/dnsmasq` is a symbolic link that should point to the root of this project in order to work. To create it, do
+The directory also contains a set of functional tests that validate whether the Dnsmasq service actually works. You can run the tests both from the host system and the VM by executing the script `runbats.sh`. When needed, the script will install [BATS](https://github.com/sstephenson/bats), a testing framework for Bash.
 
-```ShellSession
-$ cd tests/
-$ mkdir roles
-$ ln -frs ../../PROJECT_DIR roles/samba
+```
+## From the host system:
+$ ./runbats.sh
+Running test /home/bert/CfgMgmt/roles/dnsmasq/tests/dns.bats
+ ✓ The `dig` command should be installed
+ ✓ Forward lookups
+ ✓ Reverse lookups
+
+ 3 tests, 0 failures
+
+## From the VM:
+$ /vagrant/runbats.sh
+Running test /vagrant/dns.bats
+ ✓ The `dig` command should be installed
+ ✓ Forward lookups
+ ✓ Reverse lookups
+
+3 tests, 0 failures
 ```
 
-You may want to change the base box into one that you like. The current one is based on Box-Cutter's [CentOS Packer template](https://github.com/boxcutter/centos).
+In the console transcript above, the output of installing BATS is not shown.
 
 ## See also
 
