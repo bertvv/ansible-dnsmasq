@@ -48,15 +48,18 @@ test_host() {
 
   echo -e "${YELLOW}--- Running tests for host ${BLUE}${host}${YELLOW} ---${RESET}"
 
+  # The test script will use the value of ${sut_ip} (= IP address of the System Under Test)
   sut_ip="${host}" "${bats}" "${TEST_SUITE}"
 }
 
 install_bats_if_needed() {
+  # If BATS is installed system wide, use that
   if test which bats > /dev/null 2>&1; then
     which bats
     return
   fi
 
+  # If BATS is not installed in the current directory, do so
   if [ ! -x "${BATS_LOCAL}" ]; then
     install_bats
   fi
@@ -66,8 +69,8 @@ install_bats_if_needed() {
 install_bats() {
   wget "${BATS_URL}/${BATS_ARCHIVE}"
   tar xf "${BATS_ARCHIVE}"
-  mv bats-* bats
-  rm "${BATS_ARCHIVE}"
+  mv bats-* bats        # Drop the version number from install directory
+  rm "${BATS_ARCHIVE}"  # Remove the downloaded tarball
 }
 
 #}}}
