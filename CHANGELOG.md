@@ -4,6 +4,22 @@ This file contains al notable changes to the `bertvv.dnsmasq` Ansible role.
 
 This file adheres to the guidelines of [http://keepachangelog.com/](http://keepachangelog.com/). Versioning follows [Semantic Versioning](http://semver.org/).
 
+## 2.0.0 - 2016-04-22
+
+### Added
+
+- Support for Fedora, including tests (on Fedora 23).
+
+### Changed
+
+Some of the changes below result in different default behaviour of the role compared to previous version. These are considered breaking backwards compatibility, hence the major version increment.
+
+- Make `dnsmasq_listen_address` optional. This changes the default behaviour into listening to all interfaces.
+- Enable `dnsmasq_bogus_priv` by default for better security.
+- Enable `dnsmasq_domain_needed` by default for better security.
+- Use generic ‘package’ module for installation. This is a feature new in Ansible 2.0, so this version of the role can no longer be used on older versions of Ansible. This is also considered as a breaking change.
+- Separated test code into a different branch, `tests`.
+
 ## 1.2.1 - 2016-03-18
 
 ### Added
