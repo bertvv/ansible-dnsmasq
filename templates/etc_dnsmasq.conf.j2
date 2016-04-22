@@ -1,7 +1,9 @@
 # Dnsmasq configuration
 # {{ ansible_managed }}
 
+{% if dnsmasq_listen_address is defined %}
 listen-address={{ dnsmasq_listen_address }}
+{% endif %}
 {% if dnsmasq_interface is defined %}
 interface={{ dnsmasq_interface }}
 {% endif %}
