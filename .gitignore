@@ -13,3 +13,6 @@
 
 # BATS
 bats/
+
+# Ignore the test directory
+tests/
