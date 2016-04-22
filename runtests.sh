@@ -24,6 +24,8 @@ readonly YELLOW='\e[0;33m'
 readonly RESET='\e[0m'
 
 # Test settings
+readonly BATS_URL='https://github.com/sstephenson/bats/archive/'
+readonly BATS_ARCHIVE='v0.4.0.tar.gz'
 readonly BATS_LOCAL=bats/libexec/bats
 readonly HOSTS=(192.168.6.66 192.168.6.67)
 readonly TEST_SUITE=dns.bats
@@ -62,7 +64,7 @@ install_bats_if_needed() {
 }
 
 install_bats() {
-  wget "${BATS_URL}"
+  wget "${BATS_URL}/${BATS_ARCHIVE}"
   tar xf "${BATS_ARCHIVE}"
   mv bats-* bats
   rm "${BATS_ARCHIVE}"
