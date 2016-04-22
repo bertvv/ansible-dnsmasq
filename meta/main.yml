@@ -1,9 +1,9 @@
 ---
 galaxy_info:
   author: Bert Van Vreckem
-  description: A role for managing a Dnsmasq server on CentOS/RHEL 7 or Fedora 16-21.
+  description: A role for setting up a Dnsmasq server on CentOS/RHEL 7 or Fedora 16 or newer.
   license: Simplified BSD License
-  min_ansible_version: 1.2
+  min_ansible_version: 2.0
   platforms:
     - name: EL
       versions:
@@ -16,6 +16,8 @@ galaxy_info:
         - 19
         - 20
         - 21
+        - 22
+        - 23
   tags:
     - networking
     - bind
