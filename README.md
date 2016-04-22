@@ -15,22 +15,22 @@ No specific requirements.
 
 None of the variables below are required.
 
-| Variable                 | Default | Comments                                                                                                                                                                    |
-| :---                     | :---    | :---                                                                                                                                                                        |
-| `dnsmasq_addn_hosts`     | -       | Set this to specify a custom host file that should be read in addition to `/etc/hosts`.                                                                                     |
-| `dnsmasq_authoritative`  | `false` | When `true`, dnsmasq will function as an authoritative name server.                                                                                                         |
-| `dnsmasq_bogus_priv`     | `true`  | When `true`, Dnsmasq will not forward addresses in the non-routed address spaces.                                                                                           |
-| `dnsmasq_dhcp_hosts`     | -       | Array of hashes specifying IP address reservations for hosts, with keys `name` (optional), `mac` and `ip` for each reservation.                                             |
-| `dnsmasq_dhcp_ranges`    | -       | Array of hashes specifying DHCP ranges (with keys `start_addr`, `end_addr`, and `lease_time`) for each address pool. This also enables DHCP. See the Example section below. |
-| `dnsmasq_domain_needed`  | `true`  | When `true`, local requests (i.e. without domain name) are not forwarded.                                                                                                   |
-| `dnsmasq_domain`         | -       | The domain for Dnsmasq.                                                                                                                                                     |
-| `dnsmasq_expand_hosts`   | `false` | Set this (and `dnsmasq_domain`) if you want to have a domain automatically added to simple names in a hosts-file.                                                           |
-| `dnsmasq_listen_address` | -       | The IP address of the interface that should listen to DNS/DHCP requests.                                                                                                    |
-| `dnsmasq_interface`      | -       | The network interface that should listen to DNS/DHCP requests.                                                                                                              |
-| `dnsmasq_option_router`  | -       | The default gateway to be sent to clients.                                                                                                                                  |
-| `dnsmasq_port`           | -       | Set this to listen on a custom port.                                                                                                                                        |
-| `dnsmasq_resolv_file`    | -       | Set this to specify a custom `resolv.conf` file.                                                                                                                            |
-| `dnsmasq_server`         | -       | Set this to specify the IP address of upstream DNS servers directly.                                                                                                        |
+| Variable                 | Default | Comments                                                                                                                                                |
+| :---                     | :---    | :---                                                                                                                                                    |
+| `dnsmasq_addn_hosts`     | -       | Set this to specify a custom host file that should be read in addition to `/etc/hosts`.                                                                 |
+| `dnsmasq_authoritative`  | `false` | When `true`, dnsmasq will function as an authoritative name server.                                                                                     |
+| `dnsmasq_bogus_priv`     | `true`  | When `true`, Dnsmasq will not forward addresses in the non-routed address spaces.                                                                       |
+| `dnsmasq_dhcp_hosts`     | -       | Array of hashes specifying IP address reservations for hosts, with keys `name` (optional), `mac` and `ip` for each reservation. See below.              |
+| `dnsmasq_dhcp_ranges`    | -       | Array of hashes specifying DHCP ranges (with keys `start_addr`, `end_addr`, and `lease_time`) for each address pool. This also enables DHCP. See below. |
+| `dnsmasq_domain_needed`  | `true`  | When `true`, local requests (i.e. without domain name) are not forwarded.                                                                               |
+| `dnsmasq_domain`         | -       | The domain for Dnsmasq.                                                                                                                                 |
+| `dnsmasq_expand_hosts`   | `false` | Set this (and `dnsmasq_domain`) if you want to have a domain automatically added to simple names in a hosts-file.                                       |
+| `dnsmasq_listen_address` | -       | The IP address of the interface that should listen to DNS/DHCP requests.                                                                                |
+| `dnsmasq_interface`      | -       | The network interface that should listen to DNS/DHCP requests.                                                                                          |
+| `dnsmasq_option_router`  | -       | The default gateway to be sent to clients.                                                                                                              |
+| `dnsmasq_port`           | -       | Set this to listen on a custom port.                                                                                                                    |
+| `dnsmasq_resolv_file`    | -       | Set this to specify a custom `resolv.conf` file.                                                                                                        |
+| `dnsmasq_server`         | -       | Set this to specify the IP address of upstream DNS servers directly.                                                                                    |
 
 A DHCP range can be specified with the variable `dnsmasq_dhcp_ranges`, e.g.:
 
@@ -67,16 +67,31 @@ Most Dnsmasq settings have sane defaults and don't have to be specified. The sim
     - bertvv.dnsmasq
 ```
 
-A more elaborate example, with DHCP can be found in the [test playbook](tests/test.yml).
+A more elaborate example, with DHCP can be found in the [test playbook]().
 
 ## Testing
 
-The `tests` directory contains tests for this role in the form of a Vagrant environment. The playbook [`test.yml`](tests/test.yml) applies the role to a VM, setting up a DNS forwarder and DHCP server.
+### Setting up the test environment
 
-The directory also contains a set of functional tests that validate whether the Dnsmasq service actually works on the supported distributions. You can run the tests both from the host system and the VM by executing the script `runtests.sh`. When needed, the script will install [BATS](https://github.com/sstephenson/bats), a testing framework for Bash.
+Tests for this role are provided in the form of a Vagrant environment that is kept in a separate branch, `tests`. I use [git-worktree(1)](https://git-scm.com/docs/git-worktree) to include the test code into the working directory. Instructions for running the tests:
+
+1. Fetch the tests branch: `git fetch origin tests`
+2. Create a Git worktree for the test code: `git worktree add tests tests` (remark: this requires at least Git v2.5.0). This will create a directory `tests/`.
+3. `cd tests/`
+4. `vagrant up` will then create test VMs for all supported distros and apply a test playbook (`test.yml`) to each one.
+
+### Running the tests
+
+The directory also contains a set of functional tests that validate whether the Dnsmasq service actually works on the supported distributions. You can run the tests from the host system by executing the script `runtests.sh`. When needed, the script will install [BATS](https://github.com/sstephenson/bats), a testing framework for Bash.
+
+| **Hostname**      | **IP**       |
+| :---              | :---         |
+| `centos72-dnsmasq | 192.168.6.66 |
+| `fedora23-dnsmasq | 192.168.6.67 |
+
+Run the test script from within its containing directory. If successful, you should see the following output:
 
 ```
-## From the host system:
 $ ./runtests.sh
 --- Running tests for host 192.168.6.66 ---
  ✓ The `dig` command should be installed
