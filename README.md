@@ -1,6 +1,6 @@
 # Dnsmasq
 
-An Ansible role for setting up Dnsmasq under CentOS/RHEL 7 as a simple DNS forwarder, and/or DHCP server. Specifically, the responsibilities of this role are to install the necessary packages and manage the configuration.
+An Ansible role for setting up Dnsmasq under CentOS/RHEL 7 and Fedora 16 or newer as a simple DNS forwarder, and/or DHCP server. Specifically, the responsibilities of this role are to install the necessary packages and manage the configuration.
 
 Configuring the firewall is outside the scope of this role. Use another role suitable for your distribution, e.g. [bertvv.el7](https://galaxy.ansible.com/bertvv/el7/).
 
