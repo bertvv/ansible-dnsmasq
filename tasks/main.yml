@@ -1,8 +1,8 @@
 # roles/dnsmasq/tasks/main.yml
 ---
 - name: Install Dnsmasq
-  yum:
-    pkg: dnsmasq
+  package:
+    name: dnsmasq
     state: present
   tags: dnsmasq
 
