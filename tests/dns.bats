@@ -2,7 +2,9 @@
 #
 # Acceptance test for the DNS server for linuxlab.lan
 
-sut_ip=192.168.6.66
+if [ "${sut_ip}" = "" ]; then
+  sut_ip=192.168.6.66
+fi
 domain=example.lan
 
 #{{{ Helper functions

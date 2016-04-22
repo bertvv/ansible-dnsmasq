@@ -2,7 +2,6 @@
 - hosts: all
   become: true
   vars:
-    dnsmasq_listen_address: '192.168.6.66'
     dnsmasq_domain_needed: true
     dnsmasq_expand_hosts: true
     dnsmasq_bogus_priv: true
