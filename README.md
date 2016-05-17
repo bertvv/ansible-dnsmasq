@@ -30,7 +30,18 @@ None of the variables below are required.
 | `dnsmasq_option_router`  | -       | The default gateway to be sent to clients.                                                                                                              |
 | `dnsmasq_port`           | -       | Set this to listen on a custom port.                                                                                                                    |
 | `dnsmasq_resolv_file`    | -       | Set this to specify a custom `resolv.conf` file.                                                                                                        |
-| `dnsmasq_server`         | -       | Set this to specify the IP address of upstream DNS servers directly.                                                                                    |
+| `dnsmasq_server`         | -       | Set this to specify the IP address of upstream DNS servers directly. You can specify one ore more servers as a list.                                    |
+| `dnsmasq_srv_host`       | -       | Array of hashes specifying SRV records, with keys `name` (mandatory), `target`, `port`, `priority` and `weight` for each record. See below.             |
+
+One or more upstream DNS servers can can be specified with the variable `dnsmasq_server`, e.g.:
+
+```Yaml
+    dnsmasq_server: ns1.example.com
+  OR
+    dnsmasq_server:
+      - 8.8.4.4
+      - 8.8.8.8
+```
 
 A DHCP range can be specified with the variable `dnsmasq_dhcp_ranges`, e.g.:
 
@@ -53,6 +64,17 @@ IP address reservations based on MAC addres can be specified with `dnsmasq_dhcp_
         ip: '192.168.6.11'
 ```
 
+SRV records (see the comments in the dnsmasq configuration file or RFC 2782) can be specified with `dnsmasq_srv_host`, e.g.:
+
+```Yaml
+    dnsmasq_srv_host:
+      - name: _ldap._tcp.example.com
+        target: ldap01.example.com
+        port: 389
+      - name: _ldap._tcp.example.com
+        target: ldap02.example.com
+        port: 389
+```
 ## Dependencies
 
 None, but role [bertvv.hosts](https://galaxy.ansible.com/bertvv/hosts/) may come in handy if you want an easy way to manage the contents of `/etc/hosts`.
