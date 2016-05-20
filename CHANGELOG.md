@@ -4,6 +4,13 @@ This file contains al notable changes to the `bertvv.dnsmasq` Ansible role.
 
 This file adheres to the guidelines of [http://keepachangelog.com/](http://keepachangelog.com/). Versioning follows [Semantic Versioning](http://semver.org/).
 
+## 2.1.0 - 2016-05-20
+
+### Added
+
+- (GH-8) Specify upstream DNS servers with `dnsmasq_upstream_servers` (credits to [Niklas Juslin](https://github.com/JZfi))
+- (GH-8) Specify SRV records with `dnsmasq_srv_hosts` (credits to [Niklas Juslin](https://github.com/JZfi))
+
 ## 2.0.0 - 2016-04-22
 
 ### Added
