@@ -70,6 +70,29 @@ assert_mx_lookup() {
   done
 }
 
+# Usage: assert_srv_lookup SERVICE TARGET PORT [PRIORITY [WEIGHT]]
+#   e.g. assert_srv_lookup 0 0 389 charlie
+# Exits with status 0 if the query result matches the expected result
+assert_srv_lookup() {
+  local service="$1"
+  local target="$2"
+  local port="$3"
+  if [ "$#" -ge "4" ]; then
+    local priority="$4"
+  else
+    local priority="0"
+  fi
+  if [ "$#" -ge "5" ]; then
+    local weight="$5"
+  else
+    local weight="0"
+  fi
+  local result="$(dig @${sut_ip} SRV ${service}.${domain}  +short)"
+
+  [ -n "${result}" ] # the list of name servers should not be empty
+  echo "${result}" | grep "${priority} ${weight} ${port} ${target}\.${domain}\."
+}
+
 #}}}
 
 @test 'The `dig` command should be installed' {
@@ -82,6 +105,7 @@ assert_mx_lookup() {
   assert_forward_lookup dhcp   192.168.6.66
   assert_forward_lookup alpha  192.168.6.10
   assert_forward_lookup bravo  192.168.6.11
+  assert_forward_lookup charlie 192.168.6.12
 }
 
 @test 'Reverse lookups' {
@@ -89,5 +113,10 @@ assert_mx_lookup() {
   assert_reverse_lookup ns     192.168.6.66
   assert_reverse_lookup alpha  192.168.6.10
   assert_reverse_lookup bravo  192.168.6.11
+  assert_reverse_lookup charlie 192.168.6.12
+}
+
+@test 'SRV record lookup' {
+  assert_srv_lookup _ldap._tcp charlie 389
 }
 
