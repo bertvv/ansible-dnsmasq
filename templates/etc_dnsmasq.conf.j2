@@ -50,10 +50,24 @@ dhcp-option=option:router,{{ dnsmasq_option_router }}
 {% endif %}
 
 {% if dnsmasq_server is defined %}
+{% if dnsmasq_server is iterable %}
+{% for host in dnsmasq_server %}
+server={{ host }}
+{% endfor %}	
+{% else %}
 server={{ dnsmasq_server }}
+{% endif %}
 {% endif %}
 
 {% if dnsmasq_authoritative %}
 dhcp-authoritative
 {% endif %}
+
+{% if dnsmasq_srv_host is defined %}
+{% for host in dnsmasq_srv_host %}
+srv-host={{ host.name }}{% if host.target is defined %},{{ host.target }}{% endif %}{% if host.port is defined %},{{ host.port }}{% endif %}{% if host.priority is defined %},{{ host.priority }}{% endif %}{% if host.weight is defined %},{{ host.weight }}{% endif %}
+
+{% endfor %}
+{% endif %}
+
 conf-dir=/etc/dnsmasq.d
