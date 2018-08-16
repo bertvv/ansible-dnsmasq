@@ -94,7 +94,7 @@ Most Dnsmasq settings have sane defaults and don't have to be specified. The sim
     - bertvv.dnsmasq
 ```
 
-A more elaborate example, with DHCP can be found in the [test playbook]().
+A more elaborate example, with DHCP can be found in the [test playbook](https://github.com/bertvv/ansible-dnsmasq/blob/tests/test.yml).
 
 ## Testing
 
